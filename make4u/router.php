@@ -9,9 +9,9 @@ $path = explode('/', str_replace(base(), '', (new Request)->getUri()));
 $rute = new Rute;
 
 if ($path[0] == env('site.dashboard')) {
-    $rute->group('/'.env('site.dashboard'), function ($rute) {
+    $rute->group('/' . env('site.dashboard'), function ($rute) {
         $rute->map(['get', 'post'], '/', function () {
-            require _APP.'View/adm/index.html';
+            require _APP . 'View/adm/index.html';
         });
 
         //Pages
@@ -20,7 +20,15 @@ if ($path[0] == env('site.dashboard')) {
                 echo 'user';
             });
             $rute->get('/(:alphanum)', function () {
-                echo 'user edit';
+                $bytes = disk_free_space(ABS_PATH);
+                $base = 1024;
+                //$cantidad = (($bytes/$base) / $base) / $base; // en MegaBYtes
+                $cantidad = (($bytes/$base) / $base) / $base; // en GigaBYtes
+                echo round($cantidad,2) . ' GB disponibles de ...<br>'; // Imprime por ejemplo: 26295.1289062 MB
+
+
+                disk_total_space(ABS_PATH);
+               // echo 'user edit';
             });
         });
     });
@@ -29,7 +37,7 @@ if ($path[0] == env('site.dashboard')) {
         echo 'Hello Men';
     });
     $rute->get('/(:any)', function ($page) {
-        echo "Other Page </br> Visited $page*".env('site.dashboard');
+        echo "Other Page </br> Visited $page*" . env('site.dashboard');
     });
 }
 
