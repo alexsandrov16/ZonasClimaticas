@@ -1,0 +1,19 @@
+{
+    "site": {
+        "name": "My Website",
+        "description": "Managed by Make4U",
+        "url": "http://localhost/make4u",
+        "timezone": "America/Havana",
+        "time_format": "Y-m-d H:i:s",
+        "language": "es-ES",
+        "charset": "UTF-8",
+        "theme": "default",
+        "dashboard":"admin",
+        "debug": true,
+        "root":false
+    },
+    "session": {
+        "name": "m4u",
+        "timeout": 1800
+    }
+}

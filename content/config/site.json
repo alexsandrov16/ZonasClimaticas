@@ -1,0 +1,15 @@
+{
+    "site_name":         "Welcome back to Scrible",
+    "site_description":  "A flat-file-cms to manage your website.",
+    "base_url":          "http://localhost/make4u",
+    "debug":             true,
+    "adm_theme":         "adm",
+    "web_theme":         "default",
+    "timezone":          "America/Havana",
+    "time_format":       "Y-m-d H:i:s",
+    "language":          "es-ES",
+    "charset":           "UTF-8",
+    "session_name":      "scrible",
+    "session_timeout":   1800,
+    "root":              false
+}

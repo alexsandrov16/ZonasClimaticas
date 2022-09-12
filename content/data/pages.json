@@ -1,0 +1,161 @@
+{
+    "version": "1.5",
+    "timestamp": 1661357975,
+    "count": 4,
+    "index": {
+        "": {
+            "key": "",
+            "storage_key": "",
+            "template": null,
+            "storage_timestamp": 1661357974,
+            "children": {
+                "01.home": 1661357974,
+                "02.typography": 1650939307,
+                "03.rty": 1661357974
+            },
+            "checksum": "37f13c5647f7518f70352e8a1a7a0536"
+        },
+        "01.home": {
+            "key": "home",
+            "storage_key": "01.home",
+            "template": "default",
+            "storage_timestamp": 1661357974,
+            "markdown": {
+                "": {
+                    "default": 1661357974
+                }
+            },
+            "checksum": "06db8cfce240c35a524164a06c4b5efb"
+        },
+        "02.typography": {
+            "key": "typography",
+            "storage_key": "02.typography",
+            "template": "default",
+            "storage_timestamp": 1650939307,
+            "markdown": {
+                "": {
+                    "default": 1650939307
+                }
+            },
+            "checksum": "20edcaf5cb9c5ee7eacf08b4a218cf67"
+        },
+        "03.rty": {
+            "key": "rty",
+            "storage_key": "03.rty",
+            "template": "default",
+            "storage_timestamp": 1661357974,
+            "markdown": {
+                "es": {
+                    "default": 1661352244
+                }
+            },
+            "checksum": "5904eaf3aec9f650fbb6c74fc43b3122"
+        }
+    }
+},
+
+
+{
+    "pegajosa": {
+        "title": "Pegajosa",
+        "description": "",
+        "username": "admin",
+        "tags": [],
+        "type": "sticky",
+        "date": "2022-08-24 09:00:25",
+        "dateModified": "",
+        "position": 2,
+        "coverImage": "",
+        "category": "",
+        "md5file": "4207a4cf21a6772b538cc7f3b490a846",
+        "uuid": "58368f21bf32a57bea679275294e0c11",
+        "allowComments": true,
+        "template": "",
+        "noindex": false,
+        "nofollow": false,
+        "noarchive": false,
+        "custom": [
+            false
+        ]
+    },
+    "crea-tu-propio-contenido": {
+        "title": "Crea tu propio contenido",
+        "description": "",
+        "username": "admin",
+        "tags": [],
+        "type": "published",
+        "date": "2022-08-23 13:56:34",
+        "dateModified": "",
+        "allowComments": true,
+        "position": 1,
+        "coverImage": "",
+        "md5file": "",
+        "category": "general",
+        "uuid": "96d8098624704059a0ffab8c4139142c",
+        "parent": "",
+        "template": "",
+        "noindex": false,
+        "nofollow": false,
+        "noarchive": false
+    },
+    "set-up-your-new-site": {
+        "title": "Configure su nuevo sitio",
+        "description": "",
+        "username": "admin",
+        "tags": [],
+        "type": "published",
+        "date": "2022-08-23 13:55:34",
+        "dateModified": "",
+        "allowComments": true,
+        "position": 1,
+        "coverImage": "",
+        "md5file": "",
+        "category": "general",
+        "uuid": "d1e6820b44f0c04e44ce9a70921de63f",
+        "parent": "",
+        "template": "",
+        "noindex": false,
+        "nofollow": false,
+        "noarchive": false
+    },
+    "follow-bludit": {
+        "title": "Sigue Bludit",
+        "description": "",
+        "username": "admin",
+        "tags": [],
+        "type": "published",
+        "date": "2022-08-23 13:54:34",
+        "dateModified": "",
+        "allowComments": true,
+        "position": 1,
+        "coverImage": "",
+        "md5file": "",
+        "category": "general",
+        "uuid": "5ecb16f00c761904e825e3c06c88ea04",
+        "parent": "",
+        "template": "",
+        "noindex": false,
+        "nofollow": false,
+        "noarchive": false
+    },
+    "acerca-de": {
+        "title": "Acerca de",
+        "description": "",
+        "username": "admin",
+        "tags": [],
+        "type": "static",
+        "date": "2022-08-23 13:53:34",
+        "dateModified": "",
+        "allowComments": true,
+        "position": 1,
+        "coverImage": "",
+        "md5file": "",
+        "category": "general",
+        "uuid": "3f5dd51652a487e4769abcd997c3d636",
+        "parent": "",
+        "template": "",
+        "noindex": false,
+        "nofollow": false,
+        "noarchive": false
+    }
+}
