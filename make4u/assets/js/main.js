@@ -21,7 +21,11 @@ const M4U = {
     toggleSidebar: function () {
         if (window.matchMedia("(min-width: 992px)").matches) {
             sidebar.classList.toggle('sm');
-            localStorage.setItem('sidebar',true);
+            if (localStorage.getItem('sidebar')===null) {
+                localStorage.setItem('sidebar',true);
+            } else {
+                localStorage.removeItem('sidebar');
+            }
         } else if (window.matchMedia("(max-width: 992px)").matches && window.matchMedia("(min-width: 768px)").matches) {
             sidebar.classList.toggle('lg');
         } else {

@@ -42,6 +42,7 @@
     --info: #0dcaf0;
     --warning: #ffc107;
     --danger: #dc3545;
+    --muted-color: hsl(205deg, 10%, 50%);
 }
 
 /**
@@ -51,7 +52,7 @@
 :root:not([data-theme=dark]) {
     color-scheme: light;
     --background-color: #fff;
-    --color: #444;
+    --color: #6c757d;/*#444;
     /*
     --h1-color: hsl(205deg, 30%, 15%);
     --h2-color: #24333e;
@@ -59,9 +60,9 @@
     --h4-color: #374956;
     --h5-color: hsl(205deg, 20%, 32%);
     --h6-color: #4d606d;*/
-    /*
-    --muted-color: hsl(205deg, 10%, 50%);
-    --muted-border-color: hsl(205deg, 20%, 94%);*/
+
+    
+    /*--muted-border-color: hsl(205deg, 20%, 94%);*/
     /*
     --card-background-color: var(--background-color);
 
@@ -289,6 +290,7 @@ aside[role="navigation"]>main {
 }
 
 aside[role="navigation"] footer {
+    color: var(--muted-color);
     padding: 1.5em 1em;
     animation: var(--fadeIn);
 }
@@ -317,8 +319,6 @@ aside[role="navigation"]>* a:hover {
 }
 
 aside[role="navigation"] .divider {
-    background-color: var(--border-color);
-    height: 1px;
     margin: 19px 24px 20px;
 }
 
@@ -342,14 +342,25 @@ nav[role="menubar"] {
     align-items: center;
     border-bottom: 1px solid var(--border-color);
 }
+nav[role="menubar"] .items{
+    display: flex;
+    align-items: center;
+}
 
+nav[role="menubar"] .items>*:hover{
+    color: #6c757d;
+}/*
+nav[role="menubar"] .items>*:hover{
+
+}*/
+/*
 nav[role="menubar"] .material-icons:hover {
     background-color: var(--menubar-icon-hover);
 }
 
 nav[role="menubar"] .material-icons:active {
     background-color: var(--menubar-icon-action);
-}
+}*/
 
 /**
  * Grid
@@ -357,7 +368,10 @@ nav[role="menubar"] .material-icons:active {
 .dashboard {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5em;
+    gap: 1.75em;
+}
+.dashboard :is(.welcome, .content){
+    width: 100%;
 }
 
 /**
@@ -366,6 +380,14 @@ nav[role="menubar"] .material-icons:active {
 .container {
     max-width: 64em;
     margin: auto;
+}
+
+i.material-icons{cursor: pointer;}
+
+.divider {
+    background-color: var(--border-color);
+    height: 1px;
+    margin-bottom: 20px;
 }
 
 .card {
