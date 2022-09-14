@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="make4u/assets/css/style.css">
     <link rel="stylesheet" href="make4u/assets/css/icons.css">
     <link rel="shortcut icon" href="make4u/assets/img/logo.png" type="image/x-icon">
+    <style>
+        .edit-title>span {
+            display: flex;
+            align-items: baseline;
+            width: fit-content;
+        }
+
+        .edit-title .material-icons {
+            font-size: 18px;
+            margin-left: .5em;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,46 +49,40 @@
     <main>
         <div class="container">
             <div class="dashboard">
-                <div class="welcome">
-                    <div class="card">
-                        <h3>Welcome!</h3>
-                        <p> You are logged in as Admin. To help you get started
-                            building with dotCMS we provided some quick links.</p>
-                    </div>
-                </div>
-                <!--
-                <div class="storage">
-                    <div class="card">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed aspernatur minima consequuntur porro? Mollitia ab dolorum quidem velit, at itaque quisquam. Maiores perspiciatis fugiat distinctio excepturi perferendis aliquam fuga doloremque?
-                    </div>
-                </div>-->
-                <div class="content">
-                    <div class="card">
-                        <div style="display: flex;justify-content:space-between">
-                            <h4>My Site</h4>
-                            <i class="material-icons">view_list</i>
-                            <i class="material-icons">filter_list</i>
-                            <i class="material-icons">info</i>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="view-list view-module">
-                            <div>
-                                <div class="name">Page 1</div>
-                                <div class="date">21/02/2022</div>
-                                <i class="material-icons">more_horiz</i>
-                            </div>
+                <h2 class="edit-title">
+                    <span data-modal="site-name">
+                        My Site
+                        <span class="material-icons">border_color</span>
+                    </span>
+                </h2>
 
-                            <div>
-                                <div class="name">Page 2</div>
-                                <div class="date">21/02/2022</div>
-                                <i class="material-icons">more_horiz</i>
-                            </div>
+                <br>
+
+                <h5>Contenido</h5>
+                <div class="content">
+
+                    <article>
+                        <a href="">
+                            <i class="material-icons">description</i>
+                        </a>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a>
+                            <i class="material-icons">more_vert</i>
                         </div>
-                    </div>
+                    </article>
+
                 </div>
             </div>
         </div>
     </main>
+
+    <div class="modal" id="site-name">
+        <header></header>
+        <main>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, ducimus atque. Voluptates odio
+            perspiciatis tempore facere recusandae quae delectus! Ipsum asperiores laudantium adipisci voluptates, modi
+            quam exercitationem eveniet dolorum ex?</main>
+        <footer></footer>
+    </div>
 
     <script src="make4u/assets/js/main.js"></script>
 </body>
