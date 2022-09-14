@@ -20,15 +20,6 @@ if ($path[0] == env('site.dashboard')) {
                 echo 'user';
             });
             $rute->get('/(:alphanum)', function () {
-                $bytes = disk_free_space(ABS_PATH);
-                $base = 1024;
-                //$cantidad = (($bytes/$base) / $base) / $base; // en MegaBYtes
-                $cantidad = (($bytes/$base) / $base) / $base; // en GigaBYtes
-                echo round($cantidad,2) . ' GB disponibles de ...<br>'; // Imprime por ejemplo: 26295.1289062 MB
-
-
-                disk_total_space(ABS_PATH);
-               // echo 'user edit';
             });
         });
     });
@@ -38,6 +29,17 @@ if ($path[0] == env('site.dashboard')) {
     });
     $rute->get('/(:any)', function ($page) {
         echo "Other Page </br> Visited $page*" . env('site.dashboard');
+    });
+    $rute->get('/storage', function () {
+        $bytes = disk_free_space(ABS_PATH);
+        $base = 1024;
+        //$cantidad = (($bytes/$base) / $base) / $base; // en MegaBYtes
+        $cantidad = (($bytes / $base) / $base) / $base; // en GigaBYtes
+        echo round($cantidad, 2) . ' GB disponibles de ...<br>'; // Imprime por ejemplo: 26295.1289062 MB
+
+
+        disk_total_space(ABS_PATH);
+        // echo 'user edit';
     });
 }
 

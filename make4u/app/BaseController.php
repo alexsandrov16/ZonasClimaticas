@@ -3,3 +3,11 @@
 namespace Make4U;
 
 defined('MAKE4U') || die;
+
+/**
+ * undocumented class
+ */
+class BaseController
+{
+    
+}

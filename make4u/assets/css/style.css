@@ -260,7 +260,7 @@ aside[role="navigation"] {
     position: fixed;
     left: -100%;
     top: 0;
-    transition: all var(--transition);
+    transition: left, width var(--transition);
 }
 
 aside[role="navigation"]>* {
@@ -365,35 +365,90 @@ nav[role="menubar"] .material-icons:active {
 /**
  * Cards & Modals
  */
+
 [data-modal]{
     cursor: pointer;
 }
-.modal{
-    display: none;
+dialog{
+    background-color: var(--shadow-color);
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    padding: 1em;
 }
 
 
+.card{
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    padding: 2em;
+    max-width: 600px;
+}
 
+
+.card header{
+    margin-bottom: 1em;
+}
+
+.card main{
+}
+
+.card footer{
+    margin-top: 2em;
+}
+
+
+/**
+ * Contents
+ */
 article {
     background-color: var(--card-background-color);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
 }
-article .content{
-    padding: 1em;
+article .header{
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 10% 0;
+    position: relative;
+}
+article .header>i{
+    position: absolute;
+    right: .5em;
+    top: .5em;
+}
+article .header>span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.5em;
+}
+article .header>span::before{
+    content: 'description';
+    font-family: "Material Icons";
+    font-size: 2.5em;
+    color: var(--color);
+    margin: .25em 0;
+}
+article .content{
+    padding: 1em;
 }
 
 
 /**
  * Grid
  */
-.content{
+.content-page{
     display: grid;
     gap: 1.5em;
-    grid-template-columns: repeat(auto-fill, minmax(12.5em,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(13.75em,1fr));
 }
 
 /**

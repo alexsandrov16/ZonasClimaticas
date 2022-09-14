@@ -26,17 +26,19 @@
 <body>
     <nav role="menubar">
         <i onclick="M4U.toggleSidebar()" class="material-icons toggle-sidebar">menu</i>
+        <menu>
+            <i class="material-icons">face</i>
+        </menu>
     </nav>
     <aside role="navigation">
         <header>
-            <span data-name="Nueva">
-                <i class="material-icons">edit</i>
+            <span data-name="Añadir página">
+                <i class="material-icons">add</i>
             </span>
         </header>
         <main>
 
             <a href="" data-name="Dashboard"><i class="material-icons">dashboard</i></a>
-            <a href="" data-name="Contenido"><i class="material-icons">file_copy</i></a>
             <a href="" data-name="Temas"><i class="material-icons">layers</i></a>
             <a href="" data-name="Ajustes"><i class="material-icons">tune</i></a>
             <div class="divider"></div>
@@ -59,15 +61,83 @@
                 <br>
 
                 <h5>Contenido</h5>
-                <div class="content">
+                <div class="content-page">
+
 
                     <article>
-                        <a href="">
-                            <i class="material-icons">description</i>
-                        </a>
-                        <div class="content">
-                            <a href="">Lorem ipsum</a>
+                        <div class="header">
                             <i class="material-icons">more_vert</i>
+                            <span data-page=""></span>
+                        </div>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a><br>
+                            <small>1 sept 2022</small>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="header">
+                            <i class="material-icons">more_vert</i>
+                            <span data-page=""></span>
+                        </div>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a><br>
+                            <small>1 sept 2022</small>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="header">
+                            <i class="material-icons">more_vert</i>
+                            <span data-page=""></span>
+                        </div>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a><br>
+                            <small>1 sept 2022</small>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="header">
+                            <i class="material-icons">more_vert</i>
+                            <span data-page=""></span>
+                        </div>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a><br>
+                            <small>1 sept 2022</small>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="header">
+                            <i class="material-icons">more_vert</i>
+                            <span data-page=""></span>
+                        </div>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a><br>
+                            <small>1 sept 2022</small>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="header">
+                            <i class="material-icons">more_vert</i>
+                            <span data-page=""></span>
+                        </div>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a><br>
+                            <small>1 sept 2022</small>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="header">
+                            <i class="material-icons">more_vert</i>
+                            <span data-page=""></span>
+                        </div>
+                        <div class="content">
+                            <a href="">Lorem ipsum</a><br>
+                            <small>1 sept 2022</small>
                         </div>
                     </article>
 
@@ -76,13 +146,15 @@
         </div>
     </main>
 
-    <div class="modal" id="site-name">
-        <header></header>
-        <main>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, ducimus atque. Voluptates odio
-            perspiciatis tempore facere recusandae quae delectus! Ipsum asperiores laudantium adipisci voluptates, modi
-            quam exercitationem eveniet dolorum ex?</main>
-        <footer></footer>
-    </div>
+    <dialog open>
+        <div class="card">
+            <header>Lorem ipsum dolor</header>
+            <main>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti omnis ad enim earum laboriosam accusantium natus, culpa perferendis deserunt voluptatibus libero, tenetur molestiae. Laborum pariatur maiores doloremque ad, omnis praesentium.</main>
+            <footer>
+                cerrrar
+            </footer>
+        </div>
+    </dialog>
 
     <script src="make4u/assets/js/main.js"></script>
 </body>
