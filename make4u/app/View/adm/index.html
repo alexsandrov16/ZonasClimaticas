@@ -26,13 +26,23 @@
 <body>
     <nav role="menubar">
         <i onclick="M4U.toggleSidebar()" class="material-icons toggle-sidebar">menu</i>
-        <menu>
-            <i class="material-icons">face</i>
-        </menu>
+
+        <div>
+            <i class="material-icons">brightness_6</i>
+            <menu hidden class="theme-mode">
+                <span><i class="material-icons">brightness_4</i> Automatico</span>
+                <span><i class="material-icons">light_mode</i> Claro</span>
+                <span><i class="material-icons">nights_stay</i> Oscuro</span>
+            </menu>
+            <a style="display: flex;align-items:center; color:var(--color)">
+                <i class="material-icons">launch</i>
+                <span style="margin-left: .5em;cursor: pointer;">Visitar sitio</span>
+            </a>
+        </div>
     </nav>
     <aside role="navigation">
         <header>
-            <span data-name="Añadir página">
+            <span data-name="Añadir página" data-modal="add" onclick="M4U.modalOpen(this)">
                 <i class="material-icons">add</i>
             </span>
         </header>
@@ -146,12 +156,17 @@
         </div>
     </main>
 
-    <dialog open>
+    
+
+    <dialog id="add" >
         <div class="card">
             <header>Lorem ipsum dolor</header>
-            <main>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti omnis ad enim earum laboriosam accusantium natus, culpa perferendis deserunt voluptatibus libero, tenetur molestiae. Laborum pariatur maiores doloremque ad, omnis praesentium.</main>
+            <main>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti omnis ad enim earum laboriosam
+                accusantium natus, culpa perferendis deserunt voluptatibus libero, tenetur molestiae. Laborum pariatur
+                maiores doloremque ad, omnis praesentium.</main>
             <footer>
-                cerrrar
+                <button class="close-modal btn-text">cerrar</button>
+                <button class="btn-text">aceptar</button>
             </footer>
         </div>
     </dialog>
