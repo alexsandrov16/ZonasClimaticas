@@ -1,55 +1,55 @@
 <?php
-
-use Make4U\Make4U;
+defined('MAKE4U') || die;
+include 'make4u\app\View\panel\partials\head.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<style>
+  body {
+    background-color: var(--bs-gray-100);
+    max-width: 320px;
+    margin: 0 auto;
+    padding-top: 5em;
+  }
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change this</title>
+  form {
+    margin: 4em 0 2em;
+  }
+</style>
 
-    <?= $theme->css('bootstrap.min.css',true),$theme->favicon()?>
-  
-</head>
+<body>
+  <center>
+    <h1>Make4U</h1>
+    <form method="POST">
 
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" name="user" placeholder="Usuario" autocomplete="off">
+        <label for="floatingInput">Usuario</label>
+      </div>
 
-<body class="row align-items-center" style="height:100vh">
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" name="pass" placeholder="Contraseña">
+        <label for="floatingPassword">Contraseña</label>
+      </div>
 
-<div class="text-center">
-  <div class="row">
-    <div class="col-lg-4 col-md-3"></div>
-    <div class="col-lg-4 col-md-6">
+      <br>
 
-    <form action="" class="container">
-
-    
-    <h1 class=" mb-3 fw-normal"><?=Make4U::_name?></h1>
-
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <br>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-
-    <br>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">© <?=date('Y')," ",Make4U::_name?></p>
-
+      <button type="submit" class="btn btn-lg btn-primary w-100">Iniciar sesión</button>
     </form>
+  </center>
 
-    
+  <?= $alert ?>
 
-    </div>
-  </div>
-</div>
+  <?= $theme->js('bootstrap.min.js', true) ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
+      if (document.querySelector('.toast')) {
+        setTimeout(() => {
+          const toast = new bootstrap.Toast(document.querySelector('.toast'))
+          toast.show();
+        }, 500)
+      }
+    });
+  </script>
 </body>
 
 </html>

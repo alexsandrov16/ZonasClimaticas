@@ -1,12 +1,12 @@
 <?php
 
-namespace Mint\Model;
+namespace Make4U\Model;
 
-use Mint\Cookies\Session;
-use Mint\File\Json;
-use Mint\Helper\Alert;
+use Make4U\Core\Cookies\Session;
+use Make4U\Core\File\Json;
+use Make4U\Core\Helper\Alert;
 
-defined('MINT') || die;
+defined('MAKE4U') || die;
 
 /**
  * undocumented class
@@ -16,11 +16,12 @@ class Login
     public function logOn(array $post)
     {
         if ($this->checkUser($post['user'])) {
+            
             $data = Json::get(_USRS . $post['user']);
             if ($this->checkPass($post['pass'], $data['hash'])) {
                 #Session
                 Session::set('active', true);
-                Session::set('username', $data['name']);
+                //Session::set('username', $data['name']);
 
                 return redirect('admin');
             }

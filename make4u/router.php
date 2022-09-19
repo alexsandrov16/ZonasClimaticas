@@ -9,8 +9,6 @@ $path = explode('/', str_replace(base(), '', (new Request)->getUri()));
 
 $rute = new Rute;
 
-$e = 'Make4U\Controller\Dashboard';
-
 if ($path[0] == env('site.dashboard')) {
     $rute->group('/' . env('site.dashboard'), function ($rute) {
         $rute->map(['get', 'post'], '/', [Dashboard::class]);

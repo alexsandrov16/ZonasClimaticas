@@ -2,27 +2,15 @@
 
 namespace Make4U\Core\Helper;
 
-use Make4U\Core\Http\Request;
-
 defined('MAKE4U') || die;
+
+use Make4U\Core\Http\Request;
 
 /**
  * undocumented class
  */
 class Theme
 {
-
-    /**
-     * Meta Etiquetas
-     *
-     * Devuelve las meta-etiquetas a utilizar en la plantilla
-     *
-     * @return object
-     **/
-    public function seo(string $title, string $description = null)
-    {
-    }
-
     /**
      * Meta Etiquetas
      *
