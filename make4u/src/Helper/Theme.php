@@ -1,26 +1,26 @@
 <?php
-namespace Mint\Helper;
 
-defined('MINT') || die;
+namespace Make4U\Core\Helper;
 
-use Mint\File\ManagerFile;
-use Mint\Http\Request;
+use Make4U\Core\Http\Request;
+
+defined('MAKE4U') || die;
 
 /**
  * undocumented class
  */
 class Theme
 {
+
     /**
-     * undocumented function summary
+     * Meta Etiquetas
      *
-     * Undocumented function long description
+     * Devuelve las meta-etiquetas a utilizar en la plantilla
      *
-     * @param Type $var Description
+     * @return object
      **/
-    public function __construct(string $tpl)
+    public function seo(string $title, string $description = null)
     {
-        $this->tpl = $tpl;
     }
 
     /**
@@ -35,7 +35,7 @@ class Theme
         $site = env('site_name');
         $site_desc = env('site_description');
         $charset = env('charset');
-        echo <<<HTML
+        return <<<HTML
             <meta charset="$charset">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,8 +48,6 @@ class Theme
             <!--Favicon-->
             {$this->favicon()}
             HTML;
-
-        return $this;
     }
 
     /**
@@ -95,11 +93,11 @@ class Theme
         }
 
         $request = new Request;
-        if (preg_match("/admin/i", $request->getRequestTarget())) {
-            $favicon = base('content/media/favicon.png');
+        if (preg_match("/".env('site.dashboard')."/i", $request->getRequestTarget())) {
+            $favicon = base('make4u/assets/img/logo.png');
         }
 
-        $favicon = isset($favicon) ? $favicon : base('content/media/favicon.png');
+        $favicon = isset($favicon) ? $favicon : base('make4u/assets/img/logo.png');
 
         return "<link rel='icon' href='$favicon' type='image/x-icon'>";
     }
@@ -112,12 +110,16 @@ class Theme
      * @param Type $var Description
      * @return object
      **/
-    public function css(string $style)
+    public function css(string $style, bool $adm = false)
     {
-        $style = (preg_match("/http/i", $style)) ? $style : base("content/themes/$this->tpl/css/$style");
-        echo "<link rel='stylesheet' href='$style'>";
 
-        return $this;
+        $tpl = ($adm) ? "make4u/assets/css/$style" : 'content/themes/'.env('site.theme')."/css/$style" ;
+
+
+        $style = (preg_match("/http/i", $style)) ? $style : base($tpl);
+        return "<link rel='stylesheet' href='$style'>";
+
+        //return $this;
     }
 
     /**
@@ -128,11 +130,15 @@ class Theme
      * @param Type $var Description
      * @return object
      **/
-    public function js(string $script)
-    {
+    public function js(string $script, bool $adm = false)
+    {/*
         $script = (preg_match("/http/i", $script)) ? $script : base("content/themes/$this->tpl/js/$script");
-        echo "<script src='$script'></script>";
+        return "<script src='$script'></script>";*/
 
-        //return $this;
+        $tpl = ($adm) ? "make4u/assets/js/$script" : 'content/themes/'.env('site.theme')."/js/$script" ;
+
+
+        $script = (preg_match("/http/i", $script)) ? $script : base($tpl);
+        return "<script src='$script'></script>";
     }
 }

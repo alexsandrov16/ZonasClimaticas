@@ -2,6 +2,8 @@
 
 namespace Make4U;
 
+use Make4U\Core\Helper\Theme;
+
 defined('MAKE4U') || die;
 
 /**
@@ -9,5 +11,13 @@ defined('MAKE4U') || die;
  */
 class BaseController
 {
-    
+    public function __construct()
+    {
+        
+    }
+
+    public function theme()
+    {
+        return new Theme;
+    }
 }

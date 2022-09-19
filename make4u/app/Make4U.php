@@ -6,9 +6,6 @@ defined('MAKE4U') || die;
 
 use Make4U\Core\Config\Config;
 use Make4U\Core\Debug\ErrorHandler;
-use Make4U\Core\File\Json;
-
-use function PHPSTORM_META\type;
 
 /**
  * undocumented class

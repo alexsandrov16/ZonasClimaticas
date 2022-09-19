@@ -1,29 +1,29 @@
 <?php
-namespace Mint\Controller;
 
-defined('MINT') || die;
+namespace Make4U\Controller;
 
-use Mint\App;
-use Mint\Cookies\Session;
-use Mint\Helper\Theme;
-use Mint\Model\Login;
-use Mint\Model\Pages;
+use Make4U\BaseController;
+use Make4U\Core\Cookies\Session;
+
+defined('MAKE4U') || die;
 
 /**
  * undocumented class
  */
-class Dashboard
+class Dashboard extends BaseController
 {
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param Type $var Description
+     * @return type
+     * @throws conditon
+     **/
     public function __construct()
     {
-        $this->theme = new Theme(env('adm_theme'));
-
-        $session = new Session([
-            'name' => env('session_name'),
-            'gc_maxlifetime' => env('session_timeout'),
-            'cookie_lifetime' => env('session_timeout')
-        ]);
-
+        $session = new Session(['name' => env('session.name')]);
         $session->start();
 
         if (!$session::has('active')) {
@@ -34,97 +34,13 @@ class Dashboard
 
     public function index()
     {
-        return view(__FUNCTION__, [
-            'page_title' => 'Dashboard | ' . App::_name,
-            'page' => $this->theme,
-        ], true);
-    }
-
-    public function pages()
-    {
-        if ($_POST) {
-            echo Pages::add($_POST);
-        }
-
-        return view(__FUNCTION__, [
-            'page_title' => 'Pages | ' . App::_name,
-            'page' => $this->theme
-        ], true);
-    }
-
-    public function edtPage($page)
-    {
-        return view('edit', [
-            'page_title' => 'Edit Page | ' . App::_name,
-            'page' => $this->theme,
-        ], true);
-    }
-
-    public function setting()
-    {
-        return view(__FUNCTION__, [
-            'page_title' => 'Ajustes| ' . App::_name,
-            'page' => $this->theme
-        ], true);
+        echo 'one';
     }
 
     public function login()
     {
-        if ($_POST) {
-            echo (new Login)->logOn($_POST);
-        }
-        return view('login', [
-            'page_title' => 'Iniciar Sesión | ' . App::_name,
-            'page' => $this->theme,
+        return view(__FUNCTION__, [
+            'theme' => $this->theme(),
         ], true);
-    }
-
-    public function logoff()
-    {
-        Login::logOff();
-        redirect('admin');
-    }
-
-
-    /**
-     * Actions
-     */
-    public function add($action)
-    {
-        switch ($action) {
-            case 'page':
-                return Pages::add($_POST);
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-    }
-
-    public function update($action)
-    {
-        switch ($action) {
-            case 'page':
-                return Pages::update($_POST);
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-    }
-
-    public function delete($action)
-    {
-        switch ($action) {
-            case 'page':
-                return Pages::delete($_POST);
-                break;
-            
-            default:
-                # code...
-                break;
-        }
     }
 }

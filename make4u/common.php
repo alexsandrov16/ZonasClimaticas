@@ -74,7 +74,7 @@ function source($file, $line, $limit_line = 15)
  **/
 function view(string $filename, array $data, bool $adm = false)
 {
-    $file = ($adm) ? _THEMES . env('adm_theme') . DS . "$filename.php" : _THEMES . env('web_theme') . DS . "$filename.php";
+    $file = ($adm) ? _APP . "View/panel/$filename.php" : _THEMES . env('site.theme') . DS . "$filename.php";
 
     foreach ($data as $key => $value) {
         $$key = $value;
@@ -128,7 +128,7 @@ function noFound()
     new Response(404, []);
     if (ob_get_length()) ob_end_clean();
 
-    require _THEMES . "errors/404.php";
+    /*require _THEMES . "errors/404.php";
     ob_flush();
-    return ob_end_clean();
+    return ob_end_clean();*/echo 404;
 }

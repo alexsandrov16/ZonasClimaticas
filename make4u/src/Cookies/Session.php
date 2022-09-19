@@ -1,7 +1,7 @@
 <?php
 namespace Make4U\Core\Cookies;
 
-defined('MINT') || die;
+defined('MAKE4U') || die;
 
 /**
  * undocumented class
