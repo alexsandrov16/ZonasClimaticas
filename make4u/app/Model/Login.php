@@ -2,11 +2,12 @@
 
 namespace Make4U\Model;
 
+defined('MAKE4U') || die;
+
 use Make4U\Core\Cookies\Session;
 use Make4U\Core\File\Json;
 use Make4U\Core\Helper\Alert;
 
-defined('MAKE4U') || die;
 
 /**
  * undocumented class

@@ -7,6 +7,7 @@ include _APP . 'View/panel/partials/head.php';
 ?>
 
 <style>
+  /*body{overflow-x: hidden;}*/
   li.list-group-item {
     display: flex;
     justify-content: space-between;
@@ -62,42 +63,47 @@ include _APP . 'View/panel/partials/head.php';
   </div>
 </nav>
 
-<div class="row">
-  <div class="col-lg-8 border rounded-3">
-    <br>
-    <div id="editor"></div>
-  </div>
-  <div class="col-lg-4 p-4">
-    <h4>Opciones</h4>
-    <form action="<?= base(env('site.dashboard') . '/add') ?>" method="POST">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="title" id="title" placeholder="" autocomplete="off">
-        <label for="title">Titulo</label>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-sm-12 border rounded-3">
+      <br>
+      <div id="editor"></div>
+    </div>
+    <div class="col-lg-4  col-sm-12">
+      <h4>Opciones</h4>
+      <form action="<?= base(env('site.dashboard') . '/add') ?>" method="POST">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="name" id="title" placeholder="" autocomplete="off">
+          <input type="hidden" name="folder" id="folder">
+          <label for="title">Titulo</label>
+        </div>
 
-      <div class="form-floating mb-3">
-        <textarea class="form-control" name="description" placeholder="" id="floatingTextarea" autocomplete="off"></textarea>
-        <label for="floatingTextarea">Comments</label>
-      </div>
+        <div class="form-floating mb-3">
+          <textarea class="form-control" name="description" placeholder="" id="floatingTextarea" autocomplete="off"></textarea>
+          <label for="floatingTextarea">Comments</label>
+        </div>
 
-      <div class="mb-3">
+        <div class="mb-3">
 
-        <img src="https://images.unsplash.com/photo-1662581872342-3f8e0145668f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" class="rounded w-100 mb-2">
-        <input class="form-control" name="img" type="file" id="formFile">
-      </div>
+          <img src="<?= base('make4u/assets/img/default.png') ?>" alt="Portada" class="rounded w-100 mb-2">
+          <input class="form-control" name="img" type="file" id="inputFile">
+        </div>
 
-      <center class="fixed-bottom mb-3">
-        <button class="save btn btn-primary rounded-pill">Salvar</button>
-      </center>
+        <center class="fixed-bottom mb-3">
+          <button class="save btn btn-lg btn-primary rounded-pill">Salvar</button>
+        </center>
 
-    </form>
+      </form>
+    </div>
   </div>
 </div>
+
+<div class="alert"></div>
 
 <?= $theme->js('bootstrap.min.js', true) ?>
 <?= $theme->js('bootstrap.bundle.min.js', true) ?>
 
-
+<!--Editor-->
 <?= $theme->js('editor.js', true) ?>
 <?= $theme->js('checklist@latest.js', true) ?>
 <script>
@@ -121,99 +127,80 @@ include _APP . 'View/panel/partials/head.php';
 
   let form = document.querySelector('form');
   let url = "<?= base(env('site.dashboard')) ?>/add";
+  let title = document.querySelector('#title');
+  let folder = document.querySelector('#folder');
+  let textarea = document.querySelector('textarea');
+  let img = document.querySelector('img');
+  let inp_file = document.querySelector('#inputFile');
+
+  inp_file.addEventListener('change', function() {
+    console.log(this.files);
+
+    for (let i = 0; i < this.files.length; i++) {
+      img.src = URL.createObjectURL(this.files[i]);
+
+    }
+  }, false);
+
+  function slugify(string) {
+    return string
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/--+/g, '-')
+  }
 
 
+  title.addEventListener("keyup", () => {
+    folder.value = slugify(title.value);
+  })
 
 
 
   document.querySelector('.save').addEventListener('click', (e) => {
 
+    if (title.value != '') {
+      title.classList.toggle('is-invalid');
+      title.classList.toggle('is-valid');
 
-    let input = document.querySelector('input');
-    let textarea = document.querySelector('textarea');
+      editor.save().then((outputData) => {
 
-    /*try {
-      if (input.value == '') {
-      input.classList.add('is-invalid');
-    } else {
-      input.classList.remove('is-invalid');
-      input.classList.add('is-valid');
-    }
+        let formData = new FormData(form);
 
-    if (textarea.value == '') {
-      textarea.classList.add('is-invalid');
-    } else {
-      textarea.classList.remove('is-invalid');
-      textarea.classList.add('is-valid');
-    }
-    } catch (error) {
-      
-    }*/
+        formData.append('page', JSON.stringify(outputData));
 
-    editor.save().then((outputData) => {
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+          })
+          .then(function(response) {
+            return response.text();
+          })
+          .then(function(data) {
+            //console.log(data);
+            document.querySelector('.alert').innerHTML = data;
+            setTimeout(() => {
+              const toast = new bootstrap.Toast(document.querySelector('.toast'))
+              toast.show();
+            }, 1000)
+          })
+          .catch(function(errorFetch) {
+            console.log(errorFetch);
+          });
 
-      let formData = new FormData(form);
-
-      formData.append('page', JSON.stringify(outputData));
-
-      fetch(url, {
-          method: 'POST',
-          body: formData,
-        })
-        .then(function(response) {
-          return response.text();
-        })
-        .then(function(data) {
-          console.log(data)
-        })
-        .catch(function(errorFetch) {
-          Message('danger', "Error Fetch: ", errorFetch);
-          LoadBtn('button#sendDoc', 'publicar', false);
-          console.error(errorFetch);
-        });
-
-    }).catch((errorEditor) => {
-      console.log('Saving failed: ', errorEditor)
-    });
-
-
-e.preventDefault();
-
-/*
-    var formData = new FormData(document.querySelector('form'));
-
-    formData.append("username", "Groucho");
-    formData.append("accountnum", 123456); // number 123456 is immediately converted to string "123456"
-
-
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-      })
-      .then(function(response) {
-        return response.text();
-        //console.log(response);
-      })
-      .then(function(data) {
-        //LoadBtn('button#sendDoc', 'publicar', false);
-        //Message('success', data);
-        console.log(data);
-      })
-      .catch(function(errorFetch) {
-        Message('danger', "Error Fetch: ", errorFetch);
-        LoadBtn('button#sendDoc', 'publicar', false);
-        console.error(errorFetch);
+      }).catch((errorEditor) => {
+        console.log('Saving failed: ', errorEditor)
       });
+    } else {
+      title.classList.add('is-invalid');
+      title.classList.remove('is-valid');
+    }
+
 
     e.preventDefault();
-
-
-
-    /*editor.save().then((outputData) => {
-      console.log('Article data: ', outputData)
-    }).catch((error) => {
-      console.log('Saving failed: ', error)
-    });*/
-
   })
 </script>

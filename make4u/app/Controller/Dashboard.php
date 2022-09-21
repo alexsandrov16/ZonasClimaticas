@@ -6,6 +6,7 @@ use Make4U\BaseController;
 use Make4U\Core\Cookies\Session;
 use Make4U\Make4U;
 use Make4U\Model\Login;
+use Make4U\Model\Pages;
 
 defined('MAKE4U') || die;
 
@@ -45,7 +46,7 @@ class Dashboard extends BaseController
     public function add()
     {
         if ($_POST) {
-            var_dump($_POST);
+            echo (new Pages)->add($_POST,$_FILES);
         }
     }
 
