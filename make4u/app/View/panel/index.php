@@ -43,19 +43,32 @@ include _APP . 'View/panel/partials/head.php';
         </div>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a href="<?= base(env('site.dashboard')) . '/page.name' ?>">An item</a>
-            <a href="<?= base(env('site.dashboard')) ?>/dlt/page.name" class="text-danger">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <line x1="4" y1="7" x2="20" y2="7"></line>
-                <line x1="10" y1="11" x2="10" y2="17"></line>
-                <line x1="14" y1="11" x2="14" y2="17"></line>
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-              </svg>
-            </a>
-          </li>
+
+          <?php
+          $dir = new DirectoryIterator(_PAGES);
+          foreach ($dir as $fileinfo) {
+            if (!$fileinfo->isDot() && $fileinfo->isDir()) { ?>
+
+              <li class="list-group-item">
+                <a href="<?= base(env('site.dashboard')), '/', $fileinfo->getFilename() ?>">
+                  <?= substr_replace(file($fileinfo->getPathname() . DS . 'index.txt')[0], '', 0, 6) ?>
+                </a>
+                <a href="<?= base(env('site.dashboard')), '/dlt/', $fileinfo->getFilename() ?>" class="text-danger">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <line x1="4" y1="7" x2="20" y2="7"></line>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                  </svg>
+                </a>
+              </li>
+
+          <?php }
+          } ?>
+
+
         </ul>
 
       </div>
@@ -164,8 +177,8 @@ include _APP . 'View/panel/partials/head.php';
   document.querySelector('.save').addEventListener('click', (e) => {
 
     if (title.value != '') {
-      title.classList.toggle('is-invalid');
-      title.classList.toggle('is-valid');
+      title.classList.remove('is-invalid');
+      title.classList.add('is-valid');
 
       editor.save().then((outputData) => {
 

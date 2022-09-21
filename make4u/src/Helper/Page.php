@@ -1,6 +1,6 @@
 <?php
 
-namespace Make4U\Helper;
+namespace Make4U\Core\Helper;
 defined('MAKE4U') || die;
 
 /**
@@ -8,17 +8,23 @@ defined('MAKE4U') || die;
  */
 class Page
 {
-    /**
-     * undocumented function summary
-     *
-     * Undocumented function long description
-     *
-     * @param Type $var Description
-     * @return type
-     * @throws conditon
-     **/
-    public function __construct(string $page)
+    public function title()
     {
-        
+        # code...
+    }
+
+    public function description()
+    {
+        # code...
+    }
+
+    public function img()
+    {
+        # code...
+    }
+
+    public function getAllPages()
+    {
+        # code...
     }
 }

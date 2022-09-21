@@ -14,9 +14,9 @@ if ($path[0] == env('site.dashboard')) {
         $rute->map(['get', 'post'], '/', [Dashboard::class]);
         $rute->post('/add', [Dashboard::class, 'add']);
         $rute->post('/dlt/(:alphanum)', [Dashboard::class, 'delete']);
-        $rute->get('/logout', [Dashboard::class,'logout']);
-        $rute->get('/(:alphanum)', [Dashboard::class, 'edit']);
+        $rute->get('/logout', [Dashboard::class, 'logout']);
 
+        $rute->get('/(:alphanum)', [Dashboard::class, 'edit']);
     });
 } else {
     $rute->get('/', function () {
