@@ -12,12 +12,11 @@ $rute = new Rute;
 if ($path[0] == env('site.dashboard')) {
     $rute->group('/' . env('site.dashboard'), function ($rute) {
         $rute->map(['get', 'post'], '/', [Dashboard::class]);
+        $rute->post('/add', [Dashboard::class, 'add']);
+        $rute->post('/dlt/(:alphanum)', [Dashboard::class, 'delete']);
+        $rute->get('/logout', [Dashboard::class,'logout']);
+        $rute->get('/(:alphanum)', [Dashboard::class, 'edit']);
 
-        //Pages
-        $rute->group('/pages', function ($rute) {
-            $rute->map(['get', 'post'], '/add', [Dashboard::class, 'add']);
-            $rute->map(['get', 'post'], '/(:alphanum)', [Dashboard::class, 'edit']);
-        });
     });
 } else {
     $rute->get('/', function () {

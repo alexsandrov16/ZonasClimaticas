@@ -23,7 +23,7 @@ class Login
                 Session::set('active', true);
                 //Session::set('username', $data['name']);
 
-                return redirect('admin');
+                return redirect(env('site.dashboard'));
             }
             return Alert::danger('Contraseña incorrecta');
         }

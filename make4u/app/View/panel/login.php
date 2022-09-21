@@ -1,6 +1,6 @@
 <?php
 defined('MAKE4U') || die;
-include 'make4u\app\View\panel\partials\head.php';
+include _APP . 'View/panel/partials/head.php';;
 ?>
 <style>
   body {
@@ -46,7 +46,7 @@ include 'make4u\app\View\panel\partials\head.php';
         setTimeout(() => {
           const toast = new bootstrap.Toast(document.querySelector('.toast'))
           toast.show();
-        }, 500)
+        }, 1000)
       }
     });
   </script>

@@ -37,9 +37,16 @@ class Dashboard extends BaseController
     public function index()
     {
         return view(__FUNCTION__,[
-            'title'=> Make4U::_name.' | Panel',
+            'title'=> Make4U::_name.' | Dashboard',
             'theme' => $this->theme(),
         ],true);
+    }
+
+    public function add()
+    {
+        if ($_POST) {
+            var_dump($_POST);
+        }
     }
 
     public function login()
@@ -53,5 +60,10 @@ class Dashboard extends BaseController
             'theme' => $this->theme(),
             'alert'=> $alert
         ], true);
+    }
+    public function logout()
+    {
+        Login::logOff();
+        redirect(env('site.dashboard'));
     }
 }
