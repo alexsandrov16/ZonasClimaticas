@@ -1,9 +1,16 @@
 <?php
 
-use Make4U\Make4U;
+use Make4U\Core\File\Json;
+use Make4U\Core\Http\Request;
 
 defined('MAKE4U') || die;
 include _APP . 'View/panel/partials/head.php';
+
+if ((new Request)->getUri() == base(env('site.dashboard'))) {
+  $form_action = base(env('site.dashboard') . '/add');
+} else{
+  $form_action = base(env('site.dashboard') . '/edit');
+}
 ?>
 
 <style>
@@ -51,9 +58,9 @@ include _APP . 'View/panel/partials/head.php';
 
               <li class="list-group-item">
                 <a href="<?= base(env('site.dashboard')), '/', $fileinfo->getFilename() ?>">
-                  <?= substr_replace(file($fileinfo->getPathname() . DS . 'index.txt')[0], '', 0, 6) ?>
+                  <?= Json::get($fileinfo->getPathname() . DS . 'index')['title']?>
                 </a>
-                <a href="<?= base(env('site.dashboard')), '/dlt/', $fileinfo->getFilename() ?>" class="text-danger">
+                <a href="<?= base(env('site.dashboard')), '/delete/', $fileinfo->getFilename() ?>" class="text-danger">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <line x1="4" y1="7" x2="20" y2="7"></line>
@@ -84,21 +91,21 @@ include _APP . 'View/panel/partials/head.php';
     </div>
     <div class="col-lg-4  col-sm-12">
       <h4>Opciones</h4>
-      <form action="<?= base(env('site.dashboard') . '/add') ?>" method="POST">
+      <form action="<?= $form_action ?>" method="POST">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" name="name" id="title" placeholder="" autocomplete="off">
-          <input type="hidden" name="folder" id="folder">
+          <input type="text" class="form-control" name="name" id="title" placeholder="Titulo" autocomplete="off" value="<?=$page->title()?>">
+          <input type="hidden" name="folder" id="folder" value="<?=$page->slug()?>">
           <label for="title">Titulo</label>
         </div>
 
         <div class="form-floating mb-3">
-          <textarea class="form-control" name="description" placeholder="" id="floatingTextarea" autocomplete="off"></textarea>
+          <textarea class="form-control" name="description" placeholder="alg" id="floatingTextarea" autocomplete="off" value="<?=$page->description()?>"></textarea>
           <label for="floatingTextarea">Comments</label>
         </div>
 
         <div class="mb-3">
 
-          <img src="<?= base('make4u/assets/img/default.png') ?>" alt="Portada" class="rounded w-100 mb-2">
+          <img src="<?= $page->image()?>" alt="Portada" class="rounded w-100 mb-2">
           <input class="form-control" name="img" type="file" id="inputFile">
         </div>
 
@@ -120,7 +127,7 @@ include _APP . 'View/panel/partials/head.php';
 <?= $theme->js('editor.js', true) ?>
 <?= $theme->js('checklist@latest.js', true) ?>
 <script>
-  let data = null;
+  let data = <?=$page->content()?>;
   const editor = new EditorJS({
     /**
      * Id del Elemento que debe contener la instancia del Editor
@@ -139,7 +146,7 @@ include _APP . 'View/panel/partials/head.php';
 
 
   let form = document.querySelector('form');
-  let url = "<?= base(env('site.dashboard')) ?>/add";
+  let url = "<?= $form_action ?>";
   let title = document.querySelector('#title');
   let folder = document.querySelector('#folder');
   let textarea = document.querySelector('textarea');
@@ -155,6 +162,8 @@ include _APP . 'View/panel/partials/head.php';
     }
   }, false);
 
+
+/*
   function slugify(string) {
     return string
       .toString()
@@ -171,7 +180,7 @@ include _APP . 'View/panel/partials/head.php';
   title.addEventListener("keyup", () => {
     folder.value = slugify(title.value);
   })
-
+*/
 
 
   document.querySelector('.save').addEventListener('click', (e) => {

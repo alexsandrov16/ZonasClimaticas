@@ -13,10 +13,10 @@ if ($path[0] == env('site.dashboard')) {
     $rute->group('/' . env('site.dashboard'), function ($rute) {
         $rute->map(['get', 'post'], '/', [Dashboard::class]);
         $rute->post('/add', [Dashboard::class, 'add']);
-        $rute->post('/dlt/(:alphanum)', [Dashboard::class, 'delete']);
+        $rute->post('/edit', [Dashboard::class, 'edit']);
+        $rute->get('/delete/(:any)', [Dashboard::class, 'delete']);
         $rute->get('/logout', [Dashboard::class, 'logout']);
-
-        $rute->get('/(:alphanum)', [Dashboard::class, 'edit']);
+        $rute->get('/(:any)', [Dashboard::class, 'index']);
     });
 } else {
     $rute->get('/', function () {

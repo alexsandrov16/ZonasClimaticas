@@ -35,12 +35,12 @@ class Dashboard extends BaseController
         }
     }
 
-    public function index()
+    public function index($page = null)
     {
         return view(__FUNCTION__, [
             'title' => Make4U::_name . ' | Dashboard',
             'theme' => $this->theme(),
-            'page' => $this->page()
+            'page' => $this->page($page)
         ], true);
     }
 
@@ -51,10 +51,17 @@ class Dashboard extends BaseController
         }
     }
 
-    public function delete($page)
+    public function edit()
     {
         if ($_POST) {
-            echo (new Pages)->delete($_POST);
+            echo (new Pages)->update($_POST, $_FILES);
+        }
+    }
+
+    public function delete($page=null)
+    {
+        if (!empty($page)) {
+            return Pages::delete($page);
         }
     }
 

@@ -22,8 +22,8 @@ class BaseController
         return new Theme;
     }
 
-    public function Page()
+    public function page($page)
     {
-        return new Page;
+        return Page::init($page);
     }
 }

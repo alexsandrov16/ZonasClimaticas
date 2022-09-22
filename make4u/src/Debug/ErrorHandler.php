@@ -46,9 +46,9 @@ class ErrorHandler
      **/
     public function start()
     {
-        set_exception_handler([$this, 'exceptionHandler']);
+        /*set_exception_handler([$this, 'exceptionHandler']);
         set_error_handler([$this, 'errorHandler']);
-        register_shutdown_function([$this, 'shutdownHandler']);
+        register_shutdown_function([$this, 'shutdownHandler']);*/
     }
 
     /**
