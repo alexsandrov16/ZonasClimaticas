@@ -9,8 +9,15 @@ include _THEMES . env('site.theme') . DS . 'partials/head.php';
 <style>
     #activity {
         display: none;
+    }
+    #activity center{
+        margin-bottom: 3em;
+    }
+    #activity .grid{
+        display: grid;
         gap: 16px;
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        position: relative;
     }
 </style>
 
@@ -20,11 +27,16 @@ include _THEMES . env('site.theme') . DS . 'partials/head.php';
             <img src="<?= base(), 'content/themes/', env('site.theme') ?>/img/default.png" width="250" class="fadeIn" style="padding-bottom:2em;">
             <div class="fadeUp">
                 <h1><?= $title ?></h1>
-                <h4 style="font-weight:300;">¡Veamos cuánta atención prestas en clases de geografía!</h4>
+                <h4 style="font-weight:350;">¡Veamos cuánta atención prestas en clases de geografía!</h4>
             </div><br>
             <button class="fadeUp" onclick="modalOp()" role="button">comenzar</button>
         </center>
         <div id="activity">
+            <center>
+                <h2 id="hi"></h2>
+                <h4 style="font-weight:350;">Elige una temática para comenzar con las preguntas…</h4>
+            </center>
+            <div class="grid">
 
             <?php
             $dir = new DirectoryIterator(_PAGES);
@@ -40,13 +52,14 @@ include _THEMES . env('site.theme') . DS . 'partials/head.php';
             <?php }
             } ?>
 
+            </div>
         </div>
     </main>
     <dialog>
         <article>
             <h3>😄 ¡Hey! ¿Cómo te llamas?</h3>
             <p>Debes de escribir tu nombre para poder continuar</p>
-            <input type="text" name="" id="" onkeyup="active(this)">
+            <input type="text" name="" id="" onkeyup="active(this)" autocomplete="off">
             <center><button id="input" role="button" onclick="modalCl()" disabled>continuar</button></center>
         </article>
     </dialog>

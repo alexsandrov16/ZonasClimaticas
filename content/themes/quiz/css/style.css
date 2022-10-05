@@ -37,6 +37,7 @@ body {
     display: flex;
     align-items: center;
     background: url(../img/bg.png);
+    background-color: #c6dfb2;
 }
 
 h6,

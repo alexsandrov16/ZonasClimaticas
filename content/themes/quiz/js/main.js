@@ -7,8 +7,9 @@ function modalOp() {
 }
 function modalCl() {
     document.querySelector('dialog').removeAttribute('open');
-    document.querySelector('#activity').style = 'display:grid';
+    document.querySelector('#activity').style = 'display:block';
     document.querySelector('#welcome').style = 'display:none';
+    document.querySelector('#hi').innerHTML = '👋 ¡Hola '+sessionStorage.getItem('name')+'!';
 }
 
 function active(e) {
