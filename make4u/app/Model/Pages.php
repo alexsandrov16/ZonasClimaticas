@@ -36,6 +36,8 @@ class Pages extends BaseModel
             $$key = $value;
         }
 
+        $name = 'IMG_'.md5(microtime()).'.'.pathinfo($name,PATHINFO_EXTENSION);
+
         if (move_uploaded_file($tmp_name, _MEDIA . $name)) $img = base('content/media/') . $name;
         /* {
 
@@ -77,6 +79,8 @@ class Pages extends BaseModel
         foreach ($file['img'] as $key => $value) {
             $$key = $value;
         }
+
+        $name = 'IMG_'.md5(microtime()).'.'.pathinfo($name,PATHINFO_EXTENSION);
 
         if (move_uploaded_file($tmp_name, _MEDIA . $name)) $img = base('content/media/') . $name;
 

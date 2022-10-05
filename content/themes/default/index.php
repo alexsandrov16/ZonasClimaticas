@@ -1,14 +1,7 @@
-<?php defined('MINT') || die; ?>
+<?php defined('MAKE4U') || die; 
+include _THEMES.env('site.theme').DS . 'partials/head.php';
+?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <?php $page->metaTag($page_title, $page_description)
-        ->css('reboot.min.css')
-        ->css('stylebot.css');
-    ?>
-</head>
 
 <body>
     <main>

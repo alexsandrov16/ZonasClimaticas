@@ -1,29 +1,30 @@
 <?php
-namespace Mint\Controller;
 
-defined('MINT') || die;
+namespace Make4U\Controller;
 
-use Mint\Helper\Theme;
+use Make4U\BaseController;
+
+defined('MAKE4U') || die;
 
 /**
  * undocumented class
  */
-class FrontPage
+class FrontPage extends BaseController
 {
-    public function __construct()
-    {
-        $this->theme = new Theme(env('web_theme'));
-    }
-
     public function index()
     {
-        return noFound();
-        /*
         return view(__FUNCTION__, [
-            'page_title' => 'Home - Site',
-            'page_description' => 'Pagina de inicio',
-            //'description' => env('description'),
-            'page' => $this->theme
+            'title' => env('site.name'),
+            'description' => env('site.description'),
+            'theme' => $this->theme(),
+        ]);
+    }
+
+    public function pages()
+    {
+        $this->data();
+        /* return view(__FUNCTION__, [
+            ''=>,
         ]);*/
     }
 }

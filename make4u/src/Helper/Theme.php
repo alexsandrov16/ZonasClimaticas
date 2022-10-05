@@ -20,9 +20,9 @@ class Theme
      **/
     public function metaTag(string $title, string $description = null)
     {
-        $site = env('site_name');
-        $site_desc = env('site_description');
-        $charset = env('charset');
+        $site = env('site.name');
+        $site_desc = env('site.description');
+        $charset = env('site.charset');
         return <<<HTML
             <meta charset="$charset">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">

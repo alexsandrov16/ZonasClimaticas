@@ -2,6 +2,7 @@
 
 namespace Make4U;
 
+use Make4U\Core\File\Json;
 use Make4U\Core\Helper\Theme;
 use Make4U\Core\Helper\Page;
 
@@ -25,5 +26,10 @@ class BaseController
     public function page($page)
     {
         return Page::init($page);
+    }
+
+    public function data($data)
+    {
+        return Json::get($data);
     }
 }

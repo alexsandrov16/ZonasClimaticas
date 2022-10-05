@@ -1,0 +1,50 @@
+{
+    "title": "Mi primera pregunta",
+    "description": "Esta es una pagina de prueba para preguntar",
+    "image": "http:\/\/localhost\/make4u\/content\/media\/IMG_9ebef2440aaf053905062255ffc8ea40.webp",
+    "slug": "mi-primera-pregunta",
+    "content": {
+        "time": 1664548910755,
+        "blocks": [
+            {
+                "id": "YMM2nJacK3",
+                "type": "paragraph",
+                "data": {
+                    "text": "<b>pregunta<\/b>"
+                }
+            },
+            {
+                "id": "vCvcnOpp8t",
+                "type": "checklist",
+                "data": {
+                    "items": [
+                        {
+                            "text": "Respuesta 1",
+                            "checked": false
+                        },
+                        {
+                            "text": "Respuesta 2",
+                            "checked": false
+                        },
+                        {
+                            "text": "Respuesta 3",
+                            "checked": true
+                        },
+                        {
+                            "text": "Respuesta 4",
+                            "checked": false
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "z6z73aswmF",
+                "type": "paragraph",
+                "data": {
+                    "text": "La respuesta correcta es la 3 porque asi lo digo yo<br>"
+                }
+            }
+        ],
+        "version": "2.22.2"
+    }
+}
