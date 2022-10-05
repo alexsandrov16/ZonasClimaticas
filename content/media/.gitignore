@@ -1,0 +1,6 @@
+#ignorar todos los svg, webp, png, jpeg, jpg
+*.svg
+*.webp
+*.png
+*.jpeg
+*.jpg
