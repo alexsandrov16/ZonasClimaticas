@@ -59,7 +59,7 @@ include _THEMES . env('site.theme') . DS . 'partials/head.php';
         <article>
             <h3>😄 ¡Hey! ¿Cómo te llamas?</h3>
             <p>Debes de escribir tu nombre para poder continuar</p>
-            <input type="text" name="" id="" onkeyup="active(this)" autocomplete="off">
+            <input type="text" name="" id="" onkeyup="active(this)">
             <center><button id="input" role="button" onclick="modalCl()" disabled>continuar</button></center>
         </article>
     </dialog>
