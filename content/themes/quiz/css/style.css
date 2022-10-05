@@ -180,7 +180,6 @@ main {
     border-radius: var(--border-radius);
     color: white;
     display: inline-block;
-    font-weight: 550;
     text-transform: uppercase;
     transition: var(--tran-5);
     letter-spacing: .15em;
