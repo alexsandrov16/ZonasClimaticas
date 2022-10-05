@@ -232,7 +232,7 @@ dialog{
     height: 100vh;
     width: auto;
     border: none;
-    background: rgba(20, 20, 20, .25);
+    background: rgba(20, 20, 20, .5);
     backdrop-filter: blur(2px);
     padding: 0 1em;
 }
