@@ -126,6 +126,7 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
 <!--Editor-->
 <?= $theme->js('editor.js', true) ?>
 <?= $theme->js('checklist@latest.js', true) ?>
+<?= $theme->js('header@latest.js', true) ?>
 <script>
   let data = <?=$page->content()?>;
   const editor = new EditorJS({
@@ -135,6 +136,7 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
     holder: 'editor',
     placeholder: 'Comencemos..',
     tools: {
+      header:Header,
       checklist: {
         class: Checklist,
         inlineToolbar: true,

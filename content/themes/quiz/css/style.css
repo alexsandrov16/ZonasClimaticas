@@ -224,6 +224,16 @@ input:focus {
 }
 
 /**
+ * Box
+ */
+.box{
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: 2em;
+    box-shadow: 0 2px 4px rgba(20, 20, 20, .25);
+}
+
+/**
  * Modal
  */
 dialog{

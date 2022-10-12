@@ -21,7 +21,8 @@ if ($path[0] == env('site.dashboard')) {
     });
 } else {
     $rute->get('/', [FrontPage::class]);
-    $rute->get('/(:any)', function ($page) {
+    $rute->get('/(:any)', [FrontPage::class, 'pages']);
+    /*$rute->get('/(:any)', function ($page) {
         echo "Other Page </br> Visited $page*" . env('site.dashboard');
     });
    /* $rute->get('/storage', function () {
