@@ -95,7 +95,7 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
       <br>
       <!--<div id="editor"></div>-->
       <textarea name="page" form="form">
-        <?= $page->content() ?>
+        <?= $content ?>
       </textarea>
     </div>
     <div class="col-lg-4  col-sm-12">

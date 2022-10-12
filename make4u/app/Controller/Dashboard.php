@@ -41,6 +41,7 @@ class Dashboard extends BaseController
             'title' => Make4U::_name . ' | Dashboard',
             'theme' => $this->theme(),
             'page' => $this->page($page),
+            'content' => $this->data($page)['content'],
             'alert'=>$alert
         ], true);
     }
