@@ -234,6 +234,8 @@ dialog{
     background: rgba(20, 20, 20, .5);
     backdrop-filter: blur(2px);
     padding: 0 1em;
+    position: absolute;
+    top: 0;
 }
 dialog[open]{
     display: flex;

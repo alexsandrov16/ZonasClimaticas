@@ -13,9 +13,10 @@ include _THEMES . env('site.theme') . DS . 'partials/head.php';
     <main>
 
         <div class="quizdown">
-            <?=$page?>
+            <?= $page ?>
         </div>
-
+        <br>
+        <center> <a href="<?= base() ?>" role="button">volver al inicio</a></center>
     </main>
 
     <?= $theme->js('main.js') ?>
@@ -28,7 +29,7 @@ include _THEMES . env('site.theme') . DS . 'partials/head.php';
             primaryColor: 'steelblue', // primary CSS color
             secondaryColor: '#dee2e2', // secondary CSS color
             textColor: 'black', // text color of some elements
-            locale: null // language of the user interface (auto-detect per default)
+            locale: "es" // language of the user interface (auto-detect per default)
         };
 
         quizdown.init(config);
