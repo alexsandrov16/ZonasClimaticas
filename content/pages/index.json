@@ -1,0 +1,6 @@
+{
+    "title": "",
+    "description": "",
+    "slug": "",
+    "content": "        {}      ghjghj\r\n\r\n\r\n  let form = document.querySelector('form');\r\n  let url = \"<?= $form_action ?>\";\r\n  let title = document.querySelector('#title');\r\n  let folder = document.querySelector('#folder');\r\n  let textarea = document.querySelector('textarea');\r\n  let img = document.querySelector('img');\r\n  let inp_file = document.querySelector('#inputFile');\r\n\r\n  inp_file.addEventListener('change', function() {\r\n    console.log(this.files);\r\n\r\n    for (let i = 0; i < this.files.length; i++) {\r\n      img.src = URL.createObjectURL(this.files[i]);\r\n\r\n    }\r\n  }, false);"
+}

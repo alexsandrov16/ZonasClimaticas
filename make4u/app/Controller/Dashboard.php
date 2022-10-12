@@ -35,26 +35,29 @@ class Dashboard extends BaseController
         }
     }
 
-    public function index($page = null)
+    public function index($page = null,$alert = null)
     {
         return view(__FUNCTION__, [
             'title' => Make4U::_name . ' | Dashboard',
             'theme' => $this->theme(),
-            'page' => $this->page($page)
+            'page' => $this->page($page),
+            'alert'=>$alert
         ], true);
     }
 
     public function add()
     {
         if ($_POST) {
-            echo (new Pages)->add($_POST, $_FILES);
+            $alert = (new Pages)->add($_POST, $_FILES);
+            return $this->index(null, $alert);
         }
     }
 
     public function edit()
     {
         if ($_POST) {
-            echo (new Pages)->update($_POST, $_FILES);
+            $alert =  (new Pages)->update($_POST, $_FILES);
+            return $this->index(null, $alert);
         }
     }
 

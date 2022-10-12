@@ -62,7 +62,8 @@ class Pages extends BaseModel
             'description' => $post['description'],
             'image' => $img,
             'slug' => $folder,
-            'content' => json_decode($post['page']),
+            //'content' => json_decode($post['page']),
+            'content' => $post['page']
         ];
 
         Json::set(_PAGES . $folder . DS . 'index', $data);
@@ -91,7 +92,8 @@ class Pages extends BaseModel
             'description' => $post['description'],
             'image' => $img,
             //'slug' => $post['folder'],
-            'content' => json_decode($post['page']),
+            //'content' => json_decode($post['page']),
+            'content' => $post['page']
         ];
 
         Json::set(_PAGES . $post['folder'] . DS . 'index', $data);

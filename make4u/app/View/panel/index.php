@@ -8,7 +8,7 @@ include _APP . 'View/panel/partials/head.php';
 
 if ((new Request)->getUri() == base(env('site.dashboard'))) {
   $form_action = base(env('site.dashboard') . '/add');
-} else{
+} else {
   $form_action = base(env('site.dashboard') . '/edit');
 }
 ?>
@@ -22,6 +22,12 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
 
   li.list-group-item a {
     text-decoration: none;
+  }
+
+  textarea {
+    width: 100%;
+    height: 90%;
+    border: none;
   }
 </style>
 
@@ -58,7 +64,7 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
 
               <li class="list-group-item">
                 <a href="<?= base(env('site.dashboard')), '/', $fileinfo->getFilename() ?>">
-                  <?= Json::get($fileinfo->getPathname() . DS . 'index')['title']?>
+                  <?= Json::get($fileinfo->getPathname() . DS . 'index')['title'] ?>
                 </a>
                 <a href="<?= base(env('site.dashboard')), '/delete/', $fileinfo->getFilename() ?>" class="text-danger">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -85,32 +91,35 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-sm-12 border rounded-3">
+    <div class="col-lg-8 col-sm-12 border rounded-3" style="height:500px">
       <br>
-      <div id="editor"></div>
+      <!--<div id="editor"></div>-->
+      <textarea name="page" form="form">
+        <?= $page->content() ?>
+      </textarea>
     </div>
     <div class="col-lg-4  col-sm-12">
       <h4>Opciones</h4>
-      <form action="<?= $form_action ?>" method="POST">
+      <form id="form" action="<?= $form_action ?>" method="POST" enctype="multipart/form-data">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" name="name" id="title" placeholder="Titulo" autocomplete="off" value="<?=$page->title()?>">
-          <input type="hidden" name="folder" id="folder" value="<?=$page->slug()?>">
+          <input type="text" class="form-control" name="name" id="title" placeholder="Titulo" autocomplete="off" value="<?= $page->title() ?>">
+          <input type="hidden" name="folder" id="folder" value="<?= $page->slug() ?>">
           <label for="title">Titulo</label>
         </div>
 
         <div class="form-floating mb-3">
-          <textarea class="form-control" name="description" placeholder="alg" id="floatingTextarea" autocomplete="off" value="<?=$page->description()?>"></textarea>
+          <textarea class="form-control" name="description" placeholder="alg" id="floatingTextarea" autocomplete="off" value="<?= $page->description() ?>"></textarea>
           <label for="floatingTextarea">Comments</label>
         </div>
 
         <div class="mb-3">
 
-          <img src="<?= $page->image()?>" alt="Portada" class="rounded w-100 mb-2">
+          <img src="<?= $page->image() ?>" alt="Portada" class="rounded w-100 mb-2">
           <input class="form-control" name="img" type="file" id="inputFile">
         </div>
 
         <center class="fixed-bottom mb-3">
-          <button class="save btn btn-lg btn-primary rounded-pill">Salvar</button>
+          <button class="save btn btn-lg btn-primary rounded-pill" type="submit">Salvar</button>
         </center>
 
       </form>
@@ -118,38 +127,24 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
   </div>
 </div>
 
-<div class="alert"></div>
+<?= $alert ?>
 
 <?= $theme->js('bootstrap.min.js', true) ?>
 <?= $theme->js('bootstrap.bundle.min.js', true) ?>
 
-<!--Editor-->
-<?= $theme->js('editor.js', true) ?>
-<?= $theme->js('checklist@latest.js', true) ?>
 <script>
-  let data = <?=$page->content()?>;
-  const editor = new EditorJS({
-    /**
-     * Id del Elemento que debe contener la instancia del Editor
-     */
-    holder: 'editor',
-    placeholder: 'Comencemos..',
-    tools: {
-      checklist: {
-        class: Checklist,
-        inlineToolbar: true,
-      }
-    },
-    data: data,
+  document.addEventListener('DOMContentLoaded', () => {
+
+    if (document.querySelector('.toast')) {
+      setTimeout(() => {
+        const toast = new bootstrap.Toast(document.querySelector('.toast'))
+        toast.show();
+      }, 1000)
+    }
   });
+</script>
 
-
-
-  let form = document.querySelector('form');
-  let url = "<?= $form_action ?>";
-  let title = document.querySelector('#title');
-  let folder = document.querySelector('#folder');
-  let textarea = document.querySelector('textarea');
+<script>
   let img = document.querySelector('img');
   let inp_file = document.querySelector('#inputFile');
 
@@ -161,68 +156,4 @@ if ((new Request)->getUri() == base(env('site.dashboard'))) {
 
     }
   }, false);
-
-
-/*
-  function slugify(string) {
-    return string
-      .toString()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]+/g, '')
-      .replace(/--+/g, '-')
-  }
-
-
-  title.addEventListener("keyup", () => {
-    folder.value = slugify(title.value);
-  })
-*/
-
-
-  document.querySelector('.save').addEventListener('click', (e) => {
-
-    if (title.value != '') {
-      title.classList.remove('is-invalid');
-      title.classList.add('is-valid');
-
-      editor.save().then((outputData) => {
-
-        let formData = new FormData(form);
-
-        formData.append('page', JSON.stringify(outputData));
-
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-          })
-          .then(function(response) {
-            return response.text();
-          })
-          .then(function(data) {
-            //console.log(data);
-            document.querySelector('.alert').innerHTML = data;
-            setTimeout(() => {
-              const toast = new bootstrap.Toast(document.querySelector('.toast'))
-              toast.show();
-            }, 1000)
-          })
-          .catch(function(errorFetch) {
-            console.log(errorFetch);
-          });
-
-      }).catch((errorEditor) => {
-        console.log('Saving failed: ', errorEditor)
-      });
-    } else {
-      title.classList.add('is-invalid');
-      title.classList.remove('is-valid');
-    }
-
-
-    e.preventDefault();
-  })
 </script>

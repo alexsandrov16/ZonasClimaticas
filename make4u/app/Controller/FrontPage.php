@@ -20,11 +20,13 @@ class FrontPage extends BaseController
         ]);
     }
 
-    public function pages()
+    public function pages($page)
     {
-        $this->data();
-        /* return view(__FUNCTION__, [
-            ''=>,
-        ]);*/
+        return view(__FUNCTION__, [
+            'theme' => $this->theme(),
+            'title' => $this->data($page)['title'],
+            'description' => $this->data($page)['description'],
+            'page' => $this->data($page)['content'],
+        ]);
     }
 }

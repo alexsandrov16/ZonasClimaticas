@@ -30,6 +30,6 @@ class BaseController
 
     public function data($data)
     {
-        return Json::get($data);
+        return Json::get(_PAGES.$data.DS.'index');
     }
 }
